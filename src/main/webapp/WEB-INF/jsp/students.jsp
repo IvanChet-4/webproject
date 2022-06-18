@@ -30,13 +30,15 @@
     <main>
         <section class="content">
             <div class="side_menu">
-                <div><a href="/home">На главную</a></div>
+                <div><a href="/index.jsp">На главную</a></div>
             </div>
             <div class="main">
                 <div class="button_group1">
 
-                    <input class="button_student1" type="submit"
-                           value="Просмотреть успеваемость выбранных студентов" onclick="">
+
+                    <input class="button_student1" type="submit" value="Просмотреть успеваемость выбранных студентов"
+                           onclick="progressStudent()">
+
 
                     <form action="/student-create" method="get">
                     <input class="button_student2" type="submit" value="Создать студента…">
@@ -86,6 +88,10 @@
 
 <form action="/student-modify" method="get" id="modifyForm">
     <input type="hidden" name="idHiddenModify" id="idHiddenModify">
+</form>
+
+<form action="/student-progress" method="get" id="progressForm">
+    <input type="hidden" name="idHiddenProgress" id="idHiddenProgress">
 </form>
 
 </html>

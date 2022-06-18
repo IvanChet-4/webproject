@@ -582,3 +582,17 @@ h4 {
     margin-top: 30px;
     color: #ff0000;
 }
+
+/* index class*/
+.table_main{
+    margin: auto;
+    padding: auto;
+}
+
+.a-class{
+    margin-left: 35%;
+}
+
+.picture-stud{
+    align-content: center;
+}

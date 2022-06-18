@@ -1,8 +1,7 @@
 package db;
 
 import constants.Constants;
-import entity.Group;
-import entity.Student;
+import entity.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -86,6 +85,29 @@ public class DBManager {
     }
 
 
+    public static int getLastNumTerm() {
+        /*
+         *  Проверяет есть ли уже такая группа в базе. Если есть - отдает ее id.
+         *  Если нет - записываем новую группу в таблицу, и вохвращаем ее id
+         */
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.CONNECTION_URL);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM term where status = '1' ORDER BY ID DESC LIMIT 1");
+
+            while (rs.next()) {
+               String name = rs.getString("term");
+               name = name.replace("Семестр ","");
+               return Integer.parseInt(name);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
+
 
     public static void createStudent(String surname, String name, int idGroup, String date) {
 
@@ -95,6 +117,32 @@ public class DBManager {
             Statement stmt = conn.createStatement();
             stmt.execute("INSERT INTO `student` (`surname`, `name`, `id_group`, `date`) VALUES ('"+surname+"', '"+name+"', '"+idGroup+"', '"+date+"');");
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public static void createTerm(String name, String duration, String[] disciplines) {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.CONNECTION_URL);
+            Statement stmt = conn.createStatement();
+            stmt.execute("INSERT INTO `students_28_29`.`term` (`term`, `duration`) VALUES ('" + name + "', '" + duration + "');");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM term ORDER BY ID DESC LIMIT 1");
+            int idTerm = -1;
+            while (rs.next()) {
+            }
+            idTerm = rs.getInt("id");
+
+        for (String idDisc : disciplines) {
+
+            stmt.execute("INSERT INTO `students_28_29`.`term_discipline` (`id_term`, `id_discipline`) VALUES ('" + idTerm + "', '" + idDisc + "');");
+
+
+        }
+    }catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -165,6 +213,198 @@ public class DBManager {
             e.printStackTrace();
         }
     }
+
+
+
+    public static ArrayList<Term> getAllActiveTerms() {
+
+        ArrayList<Term> terms = new ArrayList<>();
+
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.CONNECTION_URL);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM term where status = 1");
+
+            while (rs.next()) {
+
+                Term term = new Term();
+                term.setId(rs.getInt("id"));
+                term.setTerm(rs.getString("term"));
+                term.setDuration(rs.getString("duration"));
+
+                terms.add(term);
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return terms;
+
+    }
+
+    public static ArrayList<Discipline> getAllActiveDisciplinesByTearm( String idTearm) {
+
+        ArrayList<Discipline> disciplines = new ArrayList<>();
+
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.CONNECTION_URL);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM term_discipline as td\n" +
+                    "left join discipline as d on td.id_discipline = d.id\n" +
+                    "where td.id_term = "+idTearm+" and d.status = '1'");
+
+            while (rs.next()) {
+                Discipline discipline = new Discipline();
+                discipline.setId(rs.getInt("id_discipline"));
+                discipline.setDiscipline(rs.getString("discipline"));
+
+                disciplines.add(discipline);
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return disciplines;
+
+    }
+
+
+    public static ArrayList<Discipline> getAllActiveDisciplines() {
+
+        ArrayList<Discipline> disciplines = new ArrayList<>();
+
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.CONNECTION_URL);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM discipline where status = '1'");
+
+            while (rs.next()) {
+                Discipline discipline = new Discipline();
+                discipline.setId(rs.getInt("id"));
+                discipline.setDiscipline(rs.getString("discipline"));
+
+                disciplines.add(discipline);
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return disciplines;
+
+    }
+
+
+
+
+    public static void deleteTerm(String id) {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.CONNECTION_URL);
+            Statement stmt = conn.createStatement();
+            stmt.execute("UPDATE `students_28_29`.`term` SET `status` = '0' WHERE (`id` = '"+id+"');");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public static Term getTermById(String idTerm) {
+
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.CONNECTION_URL);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM term where status = 1 AND id =" + idTerm);
+
+            while (rs.next()) {
+
+                Term term = new Term();
+                term.setId(rs.getInt("id"));
+                term.setTerm(rs.getString("term"));
+                term.setDuration(rs.getString("duration"));
+
+                return term;
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return null;
+
+    }
+
+
+
+    public static ArrayList<Mark> getMarks(String idStud, String idTerm) {
+        ArrayList<Mark> marks = new ArrayList<>();
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.CONNECTION_URL);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT d.id as id, d.discipline, m.mark FROM mark as m\n" +
+                   "left join term_discipline as td on m.id_term_discipline = td.id\n" +
+                    "left join discipline as d on td.id_discipline = d.id\n"+
+                    "where m.id_student =" +idStud+" and td.id_term =" +idTerm+"");
+
+            while (rs.next()) {
+
+                Mark mark = new Mark();
+                mark.setMark(rs.getInt("mark"));
+                Discipline discipline = new Discipline();
+                discipline.setId(rs.getInt("id"));
+                discipline.setDiscipline(rs.getString("discipline"));
+                mark.setDiscipline(discipline);
+
+                marks.add(mark);
+            }
+
+            if (marks.isEmpty()){
+                rs = stmt.executeQuery("SELECT * FROM term_discipline as td\n" +
+                        "left join discipline as d on td.id_discipline = d.id\n" +
+                        "where td.id_term = " + idTerm + " and d.status = '1'");
+
+
+                while (rs.next()) {
+
+                    Mark mark = new Mark();
+                    mark.setMark(-1);
+                    Discipline discipline = new Discipline();
+                    discipline.setId(rs.getInt("id_discipline"));
+                    discipline.setDiscipline(rs.getString("discipline"));
+                    mark.setDiscipline(discipline);
+
+                    marks.add(mark);
+                }
+
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return marks;
+
+    }
+
 
 
 }
