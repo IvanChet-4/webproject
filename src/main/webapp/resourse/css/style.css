@@ -596,3 +596,7 @@ h4 {
 .picture-stud{
     align-content: center;
 }
+
+.rus-lang-message{
+    @charset "UTF-8";
+}

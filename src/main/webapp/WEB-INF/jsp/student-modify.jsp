@@ -72,7 +72,7 @@
                     </form>
                 </div>
                 <c:if test="${error eq 1}">
-                    <h4>Поля не должны быть пустыми!</h4>
+                    <h4 class="rus-lang-message">Поля не должны быть пустыми!</h4>
                 </c:if>
             </div>
         </section>

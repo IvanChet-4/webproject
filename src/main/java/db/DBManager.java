@@ -129,17 +129,21 @@ public class DBManager {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection(Constants.CONNECTION_URL);
             Statement stmt = conn.createStatement();
-            stmt.execute("INSERT INTO `students_28_29`.`term` (`term`, `duration`) VALUES ('" + name + "', '" + duration + "');");
+            stmt.execute("INSERT INTO `term` (`term`, `duration`) VALUES ('" + name + "', '" + duration + "');");
+            //`students_28_29`.
+
             ResultSet rs = stmt.executeQuery("SELECT * FROM term ORDER BY ID DESC LIMIT 1");
+
+
             int idTerm = -1;
             while (rs.next()) {
-            }
-            idTerm = rs.getInt("id");
 
+                idTerm = rs.getInt("id");
+            }
         for (String idDisc : disciplines) {
 
-            stmt.execute("INSERT INTO `students_28_29`.`term_discipline` (`id_term`, `id_discipline`) VALUES ('" + idTerm + "', '" + idDisc + "');");
-
+            stmt.execute("INSERT INTO `term_discipline` (`id_term`, `id_discipline`) VALUES ('" + idTerm + "', '" + idDisc + "');");
+//`students_28_29`.
 
         }
     }catch (Exception e) {
@@ -257,7 +261,7 @@ public class DBManager {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM term_discipline as td\n" +
                     "left join discipline as d on td.id_discipline = d.id\n" +
-                    "where td.id_term = "+idTearm+" and d.status = '1'");
+                    "where td.id_term = " +idTearm+ " and d.status = '1'");
 
             while (rs.next()) {
                 Discipline discipline = new Discipline();
@@ -403,6 +407,41 @@ public class DBManager {
 
         return marks;
 
+    }
+
+
+    public static void modifyTerm(String id, String duration, String[] disciplines) {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.CONNECTION_URL);
+            Statement stmt = conn.createStatement();
+            stmt.execute("UPDATE `term` SET `duration` = '"+duration+"' WHERE (`id` = '"+id+"');");
+            stmt.execute("DELETE FROM `term_discipline` where (`id_term` = '"+id+"')");
+
+
+            for (String idDisc : disciplines) {
+
+                stmt.execute("INSERT INTO `term_discipline` (`id_term`, `id_discipline`) VALUES ('" + id + "', '" + idDisc + "');");
+//`students_28_29`.
+
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void modifyTerm(String id, String duration) {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.CONNECTION_URL);
+            Statement stmt = conn.createStatement();
+            stmt.execute("UPDATE `term` SET `duration` = '"+duration+"' WHERE (`id` = '"+id+"');");
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
