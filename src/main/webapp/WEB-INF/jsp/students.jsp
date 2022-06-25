@@ -22,8 +22,16 @@
             <div class="login">
 
 
-                <div><p>Привет, admin!</p></div>
-                <div><a href="/">Logout</a></div>
+                <c:choose>
+                    <c:when test="${isLogin eq true}">
+                        <div><p>Привет, ${login}!</p></div>
+                        <div> <a href="/logout"> Logout</a></div>
+                    </c:when>
+                    <c:otherwise>
+                        <div> <a href="/login"> Login</a></div>
+                    </c:otherwise>
+                </c:choose>
+
             </div>
         </nav>
     </header>
@@ -39,7 +47,7 @@
                     <input class="button_student1" type="submit" value="Просмотреть успеваемость выбранных студентов"
                            onclick="progressStudent()">
 
-
+                    <c:if test="${role eq 1}">
                     <form action="/student-create" method="get">
                     <input class="button_student2" type="submit" value="Создать студента…">
                     </form>
@@ -49,7 +57,7 @@
                            onclick="modifyStudent()">
                     <input class="button_student2" type="submit" value="Удалить выбранных студентов"
                            onclick="deleteStudents()">
-
+                    </c:if>
                 </div>
                 <div class="students">
                     <table class="list">
@@ -81,15 +89,14 @@
     </main>
 </div>
 </body>
-
+<c:if test="${role eq 1}">
 <form action="/student-delete" method="post" id="deleteForm">
     <input type="hidden" name="idsHiddenDelete" id="idsHiddenDelete">
 </form>
-
 <form action="/student-modify" method="get" id="modifyForm">
     <input type="hidden" name="idHiddenModify" id="idHiddenModify">
 </form>
-
+</c:if>
 <form action="/student-progress" method="get" id="progressForm">
     <input type="hidden" name="idHiddenProgress" id="idHiddenProgress">
 </form>

@@ -28,8 +28,16 @@
             <div class="login">
 
 
-                <div><p>Привет, admin!</p></div>
-                <div><a href="/">Logout</a></div>
+                <c:choose>
+                    <c:when test="${isLogin eq true}">
+                        <div><p>Привет, ${login}!</p></div>
+                        <div> <a href="/logout"> Logout</a></div>
+                    </c:when>
+                    <c:otherwise>
+                        <div> <a href="/login"> Login</a></div>
+                    </c:otherwise>
+                </c:choose>
+
             </div>
         </nav>
     </header>

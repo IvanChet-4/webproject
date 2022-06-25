@@ -530,6 +530,7 @@ h3 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin: auto;
 }
 
 .button_terms {

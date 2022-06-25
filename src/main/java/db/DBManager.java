@@ -423,7 +423,7 @@ public class DBManager {
             for (String idDisc : disciplines) {
 
                 stmt.execute("INSERT INTO `term_discipline` (`id_term`, `id_discipline`) VALUES ('" + id + "', '" + idDisc + "');");
-//`students_28_29`.
+                //`students_28_29`.
 
             }
         }catch (Exception e) {
@@ -446,7 +446,132 @@ public class DBManager {
 
 
 
+
+
+    public static void createDisciplines(String disciplines) {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.CONNECTION_URL);
+            Statement stmt = conn.createStatement();
+            stmt.execute("INSERT INTO `discipline` (`discipline`) VALUES ('"+disciplines+"');");
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void deleteDiscipline(String id) {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.CONNECTION_URL);
+            Statement stmt = conn.createStatement();
+            stmt.execute("UPDATE `discipline` SET `status` = '0' WHERE (`id` = '"+id+"');");
+            //`students_28_29`.
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void modifyDiscipline(String id, String discipline) {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.CONNECTION_URL);
+            Statement stmt = conn.createStatement();
+            stmt.execute("UPDATE `discipline` SET `discipline` = '"+discipline+"' WHERE (`id` = '"+id+"');");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static Discipline getDisciplineById(String id) {
+
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.CONNECTION_URL);
+            Statement stmt = conn.createStatement();
+
+            ResultSet rs = stmt.executeQuery("Select d.id, d.discipline from discipline as d\n" +
+                    "where status = '1' AND d.id ="+id);
+
+            while (rs.next()) {
+
+                Discipline discipline = new Discipline();
+                discipline.setId(rs.getInt("id"));
+                discipline.setDiscipline(rs.getString("discipline"));
+
+                return discipline;
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+
+
+
+
+    public static ArrayList<Role> getAllRoles() {
+
+        ArrayList<Role> roles = new ArrayList<>();
+
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.CONNECTION_URL);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM role");
+
+            while (rs.next()) {
+               Role role = new Role();
+               role.setId(rs.getInt("id"));
+               role.setRole(rs.getString("role"));
+               roles.add(role);
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return roles;
+
+    }
+
+
+
+
+    public static boolean  canLogin(String login, String password, String role) {
+
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(Constants.CONNECTION_URL);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM user_role as ur\n" +
+                    "left join user as u on ur.id_user = u.id\n" +
+                    "where ur.id_role = '"+role+"' and u.user = '"+login+"' and u.password = '"+password+"'");
+
+            while (rs.next()) {
+               return true;
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return false;
+
+    }
+
+
 }
-
-
-
