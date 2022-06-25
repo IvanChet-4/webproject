@@ -32,6 +32,7 @@ public class StudentProgressController extends HttpServlet {
         }else {
             idTerm = "-1";
         }}
+
         Term selectedTerm = DBManager.getTermById(idTerm);
 
     ArrayList<Mark> marks = DBManager.getMarks(idStud, idTerm);

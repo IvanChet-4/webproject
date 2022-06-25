@@ -346,7 +346,7 @@ public class DBManager {
             }
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+           e.printStackTrace();
         }
 
 
@@ -401,7 +401,7 @@ public class DBManager {
             }
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
 
