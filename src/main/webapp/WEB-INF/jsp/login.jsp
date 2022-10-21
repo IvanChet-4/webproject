@@ -72,8 +72,9 @@
             </form>
         </section>
     </main>
-    <h4>Права "Администратор", "Учитель", "Студент" - Login: admin, Password: 123</h4>
-    <h4>Права "Учитель", "Студент" - Login: teacher, Password: 123</h4>
+    <h4>Данные для подключения:</h4>
+    <h4>Права "Администратор" - Login: admin, Password: 123</h4>
+    <h4>Права "Учитель" - Login: teacher, Password: 123</h4>
     <h4>Права "Студент" - Login: student, Password: 123</h4>
 
 
