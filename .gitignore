@@ -1,2 +1,3 @@
 # Project exclude paths
 /target/
+webproject/src/main/java/constants/Constants.java 
