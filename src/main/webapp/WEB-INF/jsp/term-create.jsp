@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!doctype html>
 
@@ -35,12 +35,12 @@
                     <c:when test="${isLogin eq true}">
 
                         <div><p>Привет, ${login}!</p></div>
-                        <div> <a href="/logout"> Logout</a></div>
+                        <div><a href="/logout"> Logout</a></div>
 
                     </c:when>
                     <c:otherwise>
 
-                        <div> <a href="/login"> Login</a></div>
+                        <div><a href="/login"> Login</a></div>
 
                     </c:otherwise>
                 </c:choose>
@@ -81,11 +81,11 @@
                                 <select multiple="multiple" name="idsDisc">
 
 
-                                   <c:forEach items="${disciplines}" var="d">
+                                    <c:forEach items="${disciplines}" var="d">
 
-                                       <option value="${d.id}">${d.discipline}</option>
+                                        <option value="${d.id}">${d.discipline}</option>
 
-                                   </c:forEach>
+                                    </c:forEach>
 
 
                                 </select>
@@ -116,5 +116,5 @@
 
 
 </div>
-    </body>
-        </html>
+</body>
+</html>

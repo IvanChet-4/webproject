@@ -21,9 +21,9 @@
     <script src="../../resourse/js/functions.js"></script>
 
     <script>
-        $( function() {
-            $( "#datepicker" ).datepicker();
-        } );
+        $(function () {
+            $("#datepicker").datepicker();
+        });
     </script>
 </head>
 
@@ -44,12 +44,12 @@
                     <c:when test="${isLogin eq true}">
 
                         <div><p>Привет, ${login}!</p></div>
-                        <div> <a href="/logout"> Logout</a></div>
+                        <div><a href="/logout"> Logout</a></div>
 
                     </c:when>
                     <c:otherwise>
 
-                        <div> <a href="/login"> Login</a></div>
+                        <div><a href="/login"> Login</a></div>
 
                     </c:otherwise>
                 </c:choose>
@@ -130,5 +130,5 @@
 
 
 </div>
-    </body>
-        </html>
+</body>
+</html>

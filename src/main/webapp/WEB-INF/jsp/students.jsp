@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!doctype html>
 
@@ -35,12 +35,12 @@
                     <c:when test="${isLogin eq true}">
 
                         <div><p>Привет, ${login}!</p></div>
-                        <div> <a href="/logout"> Logout</a></div>
+                        <div><a href="/logout"> Logout</a></div>
 
                     </c:when>
                     <c:otherwise>
 
-                        <div> <a href="/login"> Login</a></div>
+                        <div><a href="/login"> Login</a></div>
 
                     </c:otherwise>
                 </c:choose>
@@ -68,16 +68,16 @@
 
                     <c:if test="${role eq 1}">
 
-                    <form action="/student-create" method="get">
-                        <input class="button_student2" type="submit" value="Создать студента…">
-                    </form>
+                        <form action="/student-create" method="get">
+                            <input class="button_student2" type="submit" value="Создать студента…">
+                        </form>
 
 
-                    <input class="button_student1" type="submit" value="Модифицировать выбранного студента…"
-                           onclick="modifyStudent()">
+                        <input class="button_student1" type="submit" value="Модифицировать выбранного студента…"
+                               onclick="modifyStudent()">
 
                         <input class="button_student2" type="submit" value="Удалить выбранных студентов"
-                           onclick="deleteStudents()">
+                               onclick="deleteStudents()">
 
                     </c:if>
 
@@ -101,7 +101,8 @@
                         <c:forEach items="${students}" var="s">
 
                             <tr>
-                                <td class="l_col0"><label><input name="idStudent" type="checkbox" value="${s.id}"></label>
+                                <td class="l_col0"><label><input name="idStudent" type="checkbox"
+                                                                 value="${s.id}"></label>
                                 </td>
                                 <td class="l_col1">${s.surname}</td>
                                 <td class="l_col2">${s.name}</td>
@@ -125,7 +126,7 @@
 
 
 </div>
-    </body>
+</body>
 
 
 <c:if test="${role eq 1}">
@@ -142,9 +143,9 @@
 </c:if>
 
 
-    <form action="/student-progress" method="get" id="progressForm">
-        <input type="hidden" name="idHiddenProgress" id="idHiddenProgress">
-    </form>
+<form action="/student-progress" method="get" id="progressForm">
+    <input type="hidden" name="idHiddenProgress" id="idHiddenProgress">
+</form>
 
 
 </html>

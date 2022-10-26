@@ -2,7 +2,6 @@ package controllers;
 
 import db.DBManager;
 import entity.Role;
-import entity.Term;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,44 +15,49 @@ import java.util.ArrayList;
 public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         ArrayList<Role> roles = DBManager.getAllRoles();
 
-        req.setAttribute("roles",roles);
+        req.setAttribute("roles", roles);
         req.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(req, resp);
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String login = req.getParameter("login");
-    String password = req.getParameter("password");
-    String role = req.getParameter("role");
+
+        String login = req.getParameter("login");
+        String password = req.getParameter("password");
+        String role = req.getParameter("role");
 
 
-    if (login.equals("")||password.equals("")||role.equals("")){
-        req.setAttribute("error","2");
+        if (login.equals("") || password.equals("") || role.equals("")) {
 
-        ArrayList<Role> roles = DBManager.getAllRoles();
+            req.setAttribute("error", "2");
+            ArrayList<Role> roles = DBManager.getAllRoles();
 
-        req.setAttribute("roles",roles);
-        req.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(req, resp);
-return;
-    }
+            req.setAttribute("roles", roles);
+            req.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(req, resp);
+            return;
+
+        }
 
 
-    if (DBManager.canLogin(login, password, role)){
-        req.getSession().setAttribute("isLogin","true");
-        req.getSession().setAttribute("role",role);
-        req.getSession().setAttribute("login",login);
-        resp.sendRedirect("/");
-    }else{
-        req.setAttribute("error","1");
+        if (DBManager.canLogin(login, password, role)) {
 
-        ArrayList<Role> roles = DBManager.getAllRoles();
+            req.getSession().setAttribute("isLogin", "true");
+            req.getSession().setAttribute("role", role);
+            req.getSession().setAttribute("login", login);
+            resp.sendRedirect("/");
 
-        req.setAttribute("roles",roles);
-        req.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(req, resp);
-    }
+        } else {
 
+            req.setAttribute("error", "1");
+            ArrayList<Role> roles = DBManager.getAllRoles();
+            req.setAttribute("roles", roles);
+            req.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(req, resp);
+
+        }
 
     }
 

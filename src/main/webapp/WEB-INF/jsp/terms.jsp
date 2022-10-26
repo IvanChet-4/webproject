@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!doctype html>
 
@@ -35,20 +35,20 @@
                     <c:when test="${isLogin eq true}">
 
                         <div><p>Привет, ${login}!</p></div>
-                        <div> <a href="/logout"> Logout</a></div>
+                        <div><a href="/logout"> Logout</a></div>
 
                     </c:when>
                     <c:otherwise>
 
-                        <div> <a href="/login"> Login</a></div>
+                        <div><a href="/login"> Login</a></div>
 
                     </c:otherwise>
                 </c:choose>
 
 
-      </div>
-    </nav>
-</header>
+            </div>
+        </nav>
+    </header>
 
 
     <main>
@@ -69,29 +69,28 @@
 
 
                                 <form action="/terms" method="get">
-                                <select name="idTerm">
+                                    <select name="idTerm">
 
 
-                                    <c:forEach items="${terms}" var="t">
-                                        <c:choose>
-                                            <c:when test="${t.id == selectedTerm.id}">
+                                        <c:forEach items="${terms}" var="t">
+                                            <c:choose>
+                                                <c:when test="${t.id == selectedTerm.id}">
 
-                                                <option value="${t.id}">${t.term}</option>
-                                                <br />
+                                                    <option value="${t.id}">${t.term}</option>
+                                                    <br/>
 
-                                            </c:when>
-                                            <c:otherwise>
+                                                </c:when>
+                                                <c:otherwise>
 
-                                                <option selected value="${t.id}">${t.term}</option>
-                                                <br />
+                                                    <option selected value="${t.id}">${t.term}</option>
+                                                    <br/>
 
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </c:forEach>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
 
 
-
-                                </select>
+                                    </select>
                                     <input class="button_term" type="submit" value="Выбрать">
                                 </form>
                             </label>
@@ -118,9 +117,9 @@
 
                                 <c:forEach items="${disciplines}" var="d">
 
-                                <tr>
-                                    <td class="lt_col0">${d.discipline}</td>
-                                </tr>
+                                    <tr>
+                                        <td class="lt_col0">${d.discipline}</td>
+                                    </tr>
 
                                 </c:forEach>
 
@@ -128,32 +127,33 @@
                             </table>
                         </div>
 
-<table class="table-pad-marg">
-</table>
+                        <table class="table-pad-marg">
+                        </table>
 
                         <div class="root_terms">
                             <div class="button_group3">
 
 
-                        <c:if test="${role eq 1}">
+                                <c:if test="${role eq 1}">
 
-                                <form action="/term-create" method="get">
-                                    <input class="button_terms" type="submit" value="Создать семестр…">
-                                </form>
+                                    <form action="/term-create" method="get">
+                                        <input class="button_terms" type="submit" value="Создать семестр…">
+                                    </form>
 
-                                <br>
-                                <form action="/term-modify" method="get">
-                                    <input type="hidden" name="idTermToModifying" value="${selectedTerm.id}">
-                                    <input class="button_terms" type="submit" value="Модифицировать текущий семестр…">
-                                </form>
+                                    <br>
+                                    <form action="/term-modify" method="get">
+                                        <input type="hidden" name="idTermToModifying" value="${selectedTerm.id}">
+                                        <input class="button_terms" type="submit"
+                                               value="Модифицировать текущий семестр…">
+                                    </form>
 
-                                 <br>
-                                <form action="/term-delete" method="get">
-                                    <input type="hidden" name="idTermToDelete" value="${selectedTerm.id}">
-                                    <input class="button_terms" type="submit" value="Удалить текущий семестр…">
-                                </form>
+                                    <br>
+                                    <form action="/term-delete" method="get">
+                                        <input type="hidden" name="idTermToDelete" value="${selectedTerm.id}">
+                                        <input class="button_terms" type="submit" value="Удалить текущий семестр…">
+                                    </form>
 
-                        </c:if>
+                                </c:if>
 
 
                             </div>
@@ -171,5 +171,5 @@
 
 
 </div>
-   </body>
-      </html>
+</body>
+</html>

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!doctype html>
 
@@ -78,14 +78,14 @@
     <h4>Права "Студент" - Login: student, Password: 123</h4>
 
 
-<c:if test="${error eq 1}" >
+    <c:if test="${error eq 1}">
 
-    <h4>Неверный логин, пароль или роль</h4>
+        <h4>Неверный логин, пароль или роль</h4>
 
-</c:if>
+    </c:if>
 
 
-    <c:if test="${error eq 2}" >
+    <c:if test="${error eq 2}">
 
         <h4>Поля не должны быть пустыми</h4>
 
@@ -98,5 +98,5 @@
 
 
 </div>
-    </body>
-        </html>
+</body>
+</html>

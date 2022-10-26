@@ -1,13 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!doctype html>
 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Disciplines modify</title>
@@ -33,12 +34,12 @@
                     <c:when test="${isLogin eq true}">
 
                         <div><p>Привет, ${login}!</p></div>
-                        <div> <a href="/logout"> Logout</a></div>
+                        <div><a href="/logout"> Logout</a></div>
 
                     </c:when>
                     <c:otherwise>
 
-                        <div> <a href="/login"> Login</a></div>
+                        <div><a href="/login"> Login</a></div>
 
                     </c:otherwise>
                 </c:choose>
@@ -66,11 +67,11 @@
                 <div class="form_cm">
                     <form action="/discipline-modify" method="post">
                         <input type="hidden" name="idHiddenDisciplineModify" value="${discipline.id}">
-                            <%--id="idHiddenDisciplineModify"--%>
+                        <%--id="idHiddenDisciplineModify"--%>
 
 
                         <div class="line5">
-                            <div>Название дисциплины: </div>
+                            <div>Название дисциплины:</div>
                             <label>
                                 <input name="disciplines" type="text" value="${discipline.discipline}">
                             </label>
@@ -100,5 +101,5 @@
 
 
 </div>
-    </body>
-        </html>
+</body>
+</html>

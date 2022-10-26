@@ -19,4 +19,5 @@ public class TermDeleteController extends HttpServlet {
         resp.sendRedirect("/terms");
 
     }
+
 }

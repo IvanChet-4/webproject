@@ -18,40 +18,48 @@ import java.util.Locale;
 public class StudentCreateController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         req.getRequestDispatcher("WEB-INF/jsp/student-create.jsp").forward(req, resp);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         String surname = req.getParameter("surname");
-        String  name = req.getParameter("name");
-        String  group = req.getParameter("group");
-        String  date = req.getParameter("date");
+        String name = req.getParameter("name");
+        String group = req.getParameter("group");
+        String date = req.getParameter("date");
 
+        if (surname.equals("") || name.equals("") || group.equals("") || date.equals("")) {
 
-        if (surname.equals("")||name.equals("")||group.equals("")||date.equals("")){
-            req.setAttribute("error","1");
+            req.setAttribute("error", "1");
             req.getRequestDispatcher("WEB-INF/jsp/student-create.jsp").forward(req, resp);
             return;
+
         }
-//String ---> Date
 
         DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         Date dateFromUser = null;
+
         try {
+
             dateFromUser = format.parse(date);
+
         } catch (ParseException e) {
+
             e.printStackTrace();
+
         }
-//Date ---> String for DataBase
+
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateToDataBase = formatter.format(dateFromUser);
-
         int idGroup = DBManager.getGroupId(group);
+
         DBManager.createStudent(surname, name, idGroup, dateToDataBase);
         resp.sendRedirect("/students");
 
 
     }
+
 }

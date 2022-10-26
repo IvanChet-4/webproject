@@ -36,17 +36,15 @@
                     <c:when test="${isLogin eq true}">
 
                         <div><p>Привет, ${login}!</p></div>
-                        <div> <a href="/logout"> Logout</a></div>
+                        <div><a href="/logout"> Logout</a></div>
 
                     </c:when>
                     <c:otherwise>
 
-                        <div> <a href="/login"> Login</a></div>
+                        <div><a href="/login"> Login</a></div>
 
                     </c:otherwise>
                 </c:choose>
-
-
 
 
             </div>
@@ -104,15 +102,15 @@
 
                             <c:forEach items="${marks}" var="m">
 
-                            <tr>
-                                <td class="lm_col0">${m.discipline.discipline}</td>
+                                <tr>
+                                    <td class="lm_col0">${m.discipline.discipline}</td>
 
-                                <c:if test="${m.mark ne -1}">
+                                    <c:if test="${m.mark ne -1}">
 
-                                <td class="lm_col1">${m.mark}</td>
+                                        <td class="lm_col1">${m.mark}</td>
 
-                                </c:if>
-                            </tr>
+                                    </c:if>
+                                </tr>
                             </c:forEach>
 
 
@@ -135,14 +133,14 @@
                                             <c:choose>
                                                 <c:when test="${t.id == selectedTerm.id}">
 
-                                                <option value="${t.id}">${t.term}</option>
-                                                    <br />
+                                                    <option value="${t.id}">${t.term}</option>
+                                                    <br/>
 
                                                 </c:when>
                                                 <c:otherwise>
 
                                                     <option selected value="${t.id}">${t.term}</option>
-                                                    <br />
+                                                    <br/>
 
                                                 </c:otherwise>
                                             </c:choose>
@@ -160,7 +158,7 @@
 
                         <div class="average_mark">
                             Средняя оценка за семестр:
-                            <h3> <fmt:formatNumber value="${avg}" maxFractionDigits="2"></fmt:formatNumber> балла</h3>
+                            <h3><fmt:formatNumber value="${avg}" maxFractionDigits="2"></fmt:formatNumber> балла</h3>
 
 
                         </div>
@@ -177,5 +175,5 @@
 
 
 </div>
-    </body>
-        </html>
+</body>
+</html>

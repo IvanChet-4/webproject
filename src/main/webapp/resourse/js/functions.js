@@ -1,17 +1,15 @@
-
-
 function deleteStudents() {
 
     var checkedCheckboxs = document.querySelectorAll('input[name=idStudent]:checked')
 
-    if (checkedCheckboxs.length == 0){
+    if (checkedCheckboxs.length == 0) {
         alert("Пожалуйста, выберите хотябы одного студента...");
         return;
     }
 
     var ids = "";
 
-    for (var i = 0; i < checkedCheckboxs.length; i++){
+    for (var i = 0; i < checkedCheckboxs.length; i++) {
         ids = ids + checkedCheckboxs[i].value + " "
 
     }
@@ -24,12 +22,12 @@ function modifyStudent() {
 
     var checkedCheckboxs = document.querySelectorAll('input[name=idStudent]:checked')
 
-    if (checkedCheckboxs.length == 0){
+    if (checkedCheckboxs.length == 0) {
         alert("Пожалуйста, выберите одного студента...");
         return;
     }
 
-    if (checkedCheckboxs.length > 1){
+    if (checkedCheckboxs.length > 1) {
         alert("Выберите только одного студента.");
         return;
     }
@@ -44,12 +42,12 @@ function progressStudent() {
 
     var checkedCheckboxs = document.querySelectorAll('input[name=idStudent]:checked')
 
-    if (checkedCheckboxs.length == 0){
+    if (checkedCheckboxs.length == 0) {
         alert("Пожалуйста, выберите одного студента...");
         return;
     }
 
-    if (checkedCheckboxs.length > 1){
+    if (checkedCheckboxs.length > 1) {
         alert("Выберите только одного студента.");
         return;
     }
@@ -64,14 +62,14 @@ function deleteDiscipline() {
 
     var checkedCheckboxs = document.querySelectorAll('input[name=idDiscipline]:checked')
 
-    if (checkedCheckboxs.length == 0){
+    if (checkedCheckboxs.length == 0) {
         alert("Пожалуйста, выберите хотябы одну дисциплину...");
         return;
     }
 
     var ids = "";
 
-    for (var i = 0; i < checkedCheckboxs.length; i++){
+    for (var i = 0; i < checkedCheckboxs.length; i++) {
         ids = ids + checkedCheckboxs[i].value + " "
 
     }
@@ -84,12 +82,12 @@ function modifyDiscipline() {
 
     var checkedCheckboxs = document.querySelectorAll('input[name=idDiscipline]:checked')
 
-    if (checkedCheckboxs.length == 0){
+    if (checkedCheckboxs.length == 0) {
         alert("Пожалуйста, выберите одну дисциплину...");
         return;
     }
 
-    if (checkedCheckboxs.length > 1){
+    if (checkedCheckboxs.length > 1) {
         alert("Выберите только одну дисциплину...");
         return;
     }

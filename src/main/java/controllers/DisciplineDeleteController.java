@@ -16,13 +16,16 @@ public class DisciplineDeleteController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String ids = req.getParameter("deleteHiddenDiscipline");
-        //1, 3, 5
         String[] idsToDelete = ids.split(" ");
 
-        for (String id:idsToDelete) {
+        for (String id : idsToDelete) {
+
             DBManager.deleteDiscipline(id);
+
         }
+
         resp.sendRedirect("/disciplines");
+
     }
 
 }

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!doctype html>
 
@@ -33,18 +33,18 @@
 
                 <c:choose>
                     <c:when test="${isLogin eq true}">
-                    <div><p>Привет, ${login}!</p></div>
-                    <div> <a href="/logout"> Logout</a></div>
+                        <div><p>Привет, ${login}!</p></div>
+                        <div><a href="/logout"> Logout</a></div>
                     </c:when>
                     <c:otherwise>
-                        <div> <a href="/login"> Login</a></div>
+                        <div><a href="/login"> Login</a></div>
                     </c:otherwise>
                 </c:choose>
 
 
-        </div>
-     </nav>
-</header>
+            </div>
+        </nav>
+    </header>
 
 
     <main>
@@ -62,5 +62,5 @@
 
 
 </div>
-    </body>
-        </html>
+</body>
+</html>
