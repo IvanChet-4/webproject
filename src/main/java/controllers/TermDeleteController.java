@@ -11,13 +11,11 @@ import java.io.IOException;
 
 @WebServlet(name = "TermDeleteController", urlPatterns = "/term-delete")
 public class TermDeleteController extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("idTermToDelete");
-
         DBManager.deleteTerm(id);
         resp.sendRedirect("/terms");
-
     }
-
 }

@@ -13,19 +13,12 @@ import java.io.IOException;
 public class DisciplineDeleteController extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException { // Удаление дисциплины
         String ids = req.getParameter("deleteHiddenDiscipline");
         String[] idsToDelete = ids.split(" ");
-
-        for (String id : idsToDelete) {
-
+          for (String id : idsToDelete) {
             DBManager.deleteDiscipline(id);
-
         }
-
         resp.sendRedirect("/disciplines");
-
     }
-
 }

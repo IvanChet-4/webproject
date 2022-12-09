@@ -14,34 +14,23 @@ import java.util.ArrayList;
 
 @WebServlet(name = "TermsController", urlPatterns = "/terms")
 public class TermsController extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String idTerm = req.getParameter("idTerm");
         ArrayList<Term> terms = DBManager.getAllActiveTerms();
-
-        if (idTerm == null || idTerm.equals("")) {
-
-            if (terms.size() != 0) {
-
-                idTerm = terms.get(0).getId() + "";
-
+            if (idTerm == null || idTerm.equals("")) {
+               if (terms.size() != 0) {
+                     idTerm = terms.get(0).getId() + "";
             } else {
-
                 idTerm = "-1";
-
             }
-
         }
-
         Term selectedTerm = DBManager.getTermById(idTerm);
         ArrayList<Discipline> disciplines = DBManager.getAllActiveDisciplinesByTearm(selectedTerm.getId() + "");
-
         req.setAttribute("terms", terms);
         req.setAttribute("selectedTerm", selectedTerm);
         req.setAttribute("disciplines", disciplines);
         req.getRequestDispatcher("WEB-INF/jsp/terms.jsp").forward(req, resp);
-
     }
-
 }

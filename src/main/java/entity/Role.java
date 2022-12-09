@@ -51,5 +51,4 @@ public class Role {
                 ", role='" + role + '\'' +
                 '}';
     }
-
 }

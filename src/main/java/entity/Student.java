@@ -84,5 +84,4 @@ public class Student {
                 ", date=" + date +
                 '}';
     }
-
 }

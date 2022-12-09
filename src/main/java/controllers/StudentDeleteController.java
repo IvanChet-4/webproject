@@ -14,18 +14,11 @@ public class StudentDeleteController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String ids = req.getParameter("idsHiddenDelete");
         String[] idsToDelete = ids.split(" ");
-
-        for (String id : idsToDelete) {
-
-            DBManager.deleteStudent(id);
-
+            for (String id : idsToDelete) {
+                DBManager.deleteStudent(id);
+                 }
+            resp.sendRedirect("/students");
         }
-
-        resp.sendRedirect("/students");
-
-    }
-
 }

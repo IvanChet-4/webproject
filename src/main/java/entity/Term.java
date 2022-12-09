@@ -74,5 +74,4 @@ public class Term {
                 ", disciplines=" + disciplines +
                 '}';
     }
-
 }

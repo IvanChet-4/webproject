@@ -52,5 +52,4 @@ public class Discipline {
                 ", discipline='" + discipline + '\'' +
                 '}';
     }
-
 }

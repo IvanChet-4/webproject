@@ -9,7 +9,7 @@
     <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>filter.LoginFilter</filter-class>
-    </filter>
+        </filter>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/*</url-pattern>
