@@ -16,11 +16,12 @@
 ![6](https://user-images.githubusercontent.com/104260618/202524099-7d048f50-aa98-4edd-94d4-2e5956f06e07.jpg)
 
 
-Есть файл Constants.java добавленный в gitignore. В этом файле по адресу src/main/java/constants/ находятся переменные для подключения к БД:
+Есть файл Constants.java добавленный в gitignore. В этом файле, расположенном по адресу src/main/java/constants/, находятся переменные для подключения к БД следующего вида:
 
 package constants;
 
 public interface Constants {
+
     /*Remote (для подключения к удаленной БД)*/
     String CONNECTION_URL = "jdbc:mysql://localhost:numberPort/nameScheme?user=nameuser&password=passworduser";
     /*Local (для подключения к локальной БД)*/
