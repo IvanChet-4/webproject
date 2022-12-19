@@ -6,8 +6,7 @@ public class Role {
     private int id;
     private String role;
 
-    public Role() {
-    }
+    public Role() {}
 
     public Role(int id, String role) {
         this.id = id;

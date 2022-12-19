@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Контроллер удаления семестра
+ * */
 @WebServlet(name = "TermDeleteController", urlPatterns = "/term-delete")
 public class TermDeleteController extends HttpServlet {
 

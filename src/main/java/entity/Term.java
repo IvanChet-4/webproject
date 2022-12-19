@@ -7,12 +7,11 @@ public class Term {
     private int id;
     private String term;
     private String duration;
-    private ArrayList<Discipline> disciplines = new ArrayList<>();
+    private ArrayList < Discipline > disciplines = new ArrayList < > ();
 
-    public Term() {
-    }
+    public Term() {}
 
-    public Term(int id, String term, String duration, ArrayList<Discipline> disciplines) {
+    public Term(int id, String term, String duration, ArrayList < Discipline > disciplines) {
         this.id = id;
         this.term = term;
         this.duration = duration;
@@ -43,11 +42,11 @@ public class Term {
         this.duration = duration;
     }
 
-    public ArrayList<Discipline> getDisciplines() {
+    public ArrayList < Discipline > getDisciplines() {
         return disciplines;
     }
 
-    public void setDisciplines(ArrayList<Discipline> disciplines) {
+    public void setDisciplines(ArrayList < Discipline > disciplines) {
         this.disciplines = disciplines;
     }
 

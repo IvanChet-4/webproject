@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Контроллер удаления выбранных дисциплин
+ * */
 @WebServlet(name = "DisciplineDeleteController", urlPatterns = "/disciplines-delete")
 public class DisciplineDeleteController extends HttpServlet {
 
@@ -16,7 +19,7 @@ public class DisciplineDeleteController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException { // Удаление дисциплины
         String ids = req.getParameter("deleteHiddenDiscipline");
         String[] idsToDelete = ids.split(" ");
-          for (String id : idsToDelete) {
+        for (String id: idsToDelete) {
             DBManager.deleteDiscipline(id);
         }
         resp.sendRedirect("/disciplines");

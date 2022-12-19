@@ -9,8 +9,7 @@ public class Mark {
     private Term term;
     private Discipline discipline;
 
-    public Mark() {
-    }
+    public Mark() {}
 
     public Mark(int id, int mark, Student student, Term term, Discipline discipline) {
         this.id = id;

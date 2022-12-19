@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Контроллер выхода из аутентифицированной учетной записи
+ * */
 @WebServlet(name = "LogoutController", urlPatterns = "/logout")
 public class LogoutController extends HttpServlet {
 

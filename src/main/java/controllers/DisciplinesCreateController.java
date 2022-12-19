@@ -11,12 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Контроллер создания новой дисциплины
+ * */
 @WebServlet(name = "DisciplinesCreateController", urlPatterns = "/disciplines-create")
 public class DisciplinesCreateController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ArrayList<Discipline> disciplines = DBManager.getAllActiveDisciplines();
+        ArrayList < Discipline > disciplines = DBManager.getAllActiveDisciplines();
         req.setAttribute("disciplines", disciplines);
         req.getRequestDispatcher("WEB-INF/jsp/disciplines-create.jsp").forward(req, resp);
     }
@@ -27,7 +30,7 @@ public class DisciplinesCreateController extends HttpServlet {
         if (disciplines == null || disciplines.equals("")) {
             req.setAttribute("error", "1");
             req.getRequestDispatcher("WEB-INF/jsp/disciplines-create.jsp").forward(req, resp);
-                return;
+            return;
         }
         DBManager.createDisciplines(disciplines);
         resp.sendRedirect("/disciplines");

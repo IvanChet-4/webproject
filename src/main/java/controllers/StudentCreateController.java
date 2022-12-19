@@ -14,6 +14,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * Контроллер создания студента
+ * */
 @WebServlet(name = "StudentCreateController", urlPatterns = "/student-create")
 public class StudentCreateController extends HttpServlet {
 
@@ -28,22 +31,22 @@ public class StudentCreateController extends HttpServlet {
         String name = req.getParameter("name");
         String group = req.getParameter("group");
         String date = req.getParameter("date");
-            if (surname.equals("") || name.equals("") || group.equals("") || date.equals("")) {
-                req.setAttribute("error", "1");
-                req.getRequestDispatcher("WEB-INF/jsp/student-create.jsp").forward(req, resp);
-                    return;
-            }
-            DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-            Date dateFromUser = null;
-                try {
-                    dateFromUser = format.parse(date);
-                } catch (ParseException e) {
-                        e.printStackTrace();
-                }
-            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String dateToDataBase = formatter.format(dateFromUser);
-            int idGroup = DBManager.getGroupId(group);
-            DBManager.createStudent(surname, name, idGroup, dateToDataBase);
-            resp.sendRedirect("/students");
+        if (surname.equals("") || name.equals("") || group.equals("") || date.equals("")) {
+            req.setAttribute("error", "1");
+            req.getRequestDispatcher("WEB-INF/jsp/student-create.jsp").forward(req, resp);
+            return;
+        }
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        Date dateFromUser = null;
+        try {
+            dateFromUser = format.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateToDataBase = formatter.format(dateFromUser);
+        int idGroup = DBManager.getGroupId(group);
+        DBManager.createStudent(surname, name, idGroup, dateToDataBase);
+        resp.sendRedirect("/students");
     }
 }

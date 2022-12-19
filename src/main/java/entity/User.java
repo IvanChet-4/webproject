@@ -7,12 +7,11 @@ public class User {
     private int id;
     private String login;
     private String password;
-    private ArrayList<Role> roles = new ArrayList<>();
+    private ArrayList < Role > roles = new ArrayList < > ();
 
-    public User() {
-    }
+    public User() {}
 
-    public User(int id, String login, String password, ArrayList<Role> roles) {
+    public User(int id, String login, String password, ArrayList < Role > roles) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -43,11 +42,11 @@ public class User {
         this.password = password;
     }
 
-    public ArrayList<Role> getRoles() {
+    public ArrayList < Role > getRoles() {
         return roles;
     }
 
-    public void setRoles(ArrayList<Role> roles) {
+    public void setRoles(ArrayList < Role > roles) {
         this.roles = roles;
     }
 

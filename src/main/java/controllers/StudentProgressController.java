@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Контроллер оценок студентов
+ * */
 @WebServlet(name = "StudentProgressController", urlPatterns = "/student-progress")
 public class StudentProgressController extends HttpServlet {
 
@@ -21,22 +24,22 @@ public class StudentProgressController extends HttpServlet {
         String idStud = req.getParameter("idHiddenProgress");
         String idTerm = req.getParameter("idTerm");
         Student student = DBManager.getStudentById(idStud);
-        ArrayList<Term> terms = DBManager.getAllActiveTerms();
-            if (idTerm == null || idTerm.equals("")) {
-                if (terms.size() != 0) {
-                    idTerm = terms.get(0).getId() + "";
+        ArrayList < Term > terms = DBManager.getAllActiveTerms();
+        if (idTerm == null || idTerm.equals("")) {
+            if (terms.size() != 0) {
+                idTerm = terms.get(0).getId() + "";
             } else {
                 idTerm = "-1";
             }
         }
         Term selectedTerm = DBManager.getTermById(idTerm);
-        ArrayList<Mark> marks = DBManager.getMarks(idStud, idTerm);
+        ArrayList < Mark > marks = DBManager.getMarks(idStud, idTerm);
         double summaMarks = 0;
-            for (Mark m : marks) {
-                if (m.getMark() != -1) {
-                    summaMarks = summaMarks + m.getMark();
-                }
+        for (Mark m: marks) {
+            if (m.getMark() != -1) {
+                summaMarks = summaMarks + m.getMark();
             }
+        }
         if (marks.size() > 0 && summaMarks != 0) {
             req.setAttribute("avg", (summaMarks / marks.size()));
         } else {

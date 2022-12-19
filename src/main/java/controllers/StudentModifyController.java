@@ -15,7 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-
+/**
+ * Контроллер изменения выбранного студента
+ * */
 @WebServlet(name = "StudentModifyController", urlPatterns = "/student-modify")
 public class StudentModifyController extends HttpServlet {
 
@@ -34,18 +36,18 @@ public class StudentModifyController extends HttpServlet {
         String name = req.getParameter("name");
         String group = req.getParameter("group");
         String date = req.getParameter("date");
-            if (surname.equals("") || name.equals("") || group.equals("") || date.equals("")) {
-                req.setAttribute("error", "1");
-                req.getRequestDispatcher("WEB-INF/jsp/student-create.jsp").forward(req, resp);
-                    return;
+        if (surname.equals("") || name.equals("") || group.equals("") || date.equals("")) {
+            req.setAttribute("error", "1");
+            req.getRequestDispatcher("WEB-INF/jsp/student-create.jsp").forward(req, resp);
+            return;
         }
         DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         Date dateFromUser = null;
-            try {
-                dateFromUser = format.parse(date);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+        try {
+            dateFromUser = format.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateToDataBase = formatter.format(dateFromUser);
         int idGroup = DBManager.getGroupId(group);

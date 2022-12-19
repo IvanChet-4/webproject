@@ -6,8 +6,7 @@ public class Discipline {
     private int id;
     private String discipline;
 
-    public Discipline() {
-    }
+    public Discipline() {}
 
     public Discipline(int id, String discipline) {
         this.id = id;

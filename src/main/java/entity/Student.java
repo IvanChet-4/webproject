@@ -10,8 +10,7 @@ public class Student {
     private Group group;
     private Date date;
 
-    public Student() {
-    }
+    public Student() {}
 
     public Student(int id, String surname, String name, Group group, Date date) {
         this.id = id;

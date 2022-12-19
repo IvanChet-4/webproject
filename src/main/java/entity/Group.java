@@ -6,8 +6,7 @@ public class Group {
     private int id;
     private String group;
 
-    public Group() {
-    }
+    public Group() {}
 
 
     public Group(int id, String group) {
